@@ -1,6 +1,6 @@
 # WebSocket Messenger - Python Edition
 
-A modern real-time messaging application built with Flask, Flask-SocketIO, and SQLAlchemy. Converted from ASP.NET Core to Python.
+A modern real-time messaging application built with Flask, Flask-SocketIO, and SQLAlchemy.
 
 ## Features
 
