@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Chat - WebSocket Messenger{% endblock %}
+
+{% block content %}
+<div class="chat-container" data-current-user-email="{{ current_user.email }}">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>WebSocket Messenger</h2>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <form id="logoutForm" method="POST" action="{{ url_for('auth.logout') }}" style="display: inline;">
+                    <button type="submit" class="btn btn-logout">Logout</button>
+                </form>
+                <div class="current-user-name" style="font-weight: 600; color: var(--primary-color);">
+                    {{ current_user.username }}
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="users">Users <span id="usersTabBadge"
+                    class="tab-badge hidden">0</span></button>
+            <button class="tab-btn" data-tab="groups">Groups <span id="groupsTabBadge"
+                    class="tab-badge hidden">0</span></button>
+        </div>
+
+        <div class="tab-content" id="users-tab">
+            <div class="user-list" id="userList">
+                <p class="loading">Loading users...</p>
+            </div>
+        </div>
+
+        <div class="tab-content hidden" id="groups-tab">
+            <button class="btn btn-create-group" id="createGroupBtn">+ Create Group</button>
+            <div class="group-list" id="groupList">
+                <p class="loading">Loading groups...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-main">
+        <div class="chat-header" id="chatHeader">
+            <h3>Select a user or group to start chatting</h3>
+        </div>
+
+        <div class="messages" id="messages">
+            <p class="empty-state">No messages yet. Start a conversation!</p>
+        </div>
+
+        <div class="message-input-container">
+            <input type="text" id="messageInput" placeholder="Type a message..." disabled>
+            <button id="sendBtn" class="btn btn-send" disabled>Send</button>
+        </div>
+    </div>
+</div>
+
+<!-- Create Group Modal -->
+<div id="createGroupModal" class="modal hidden">
+    <div class="modal-content">
+        <h3>Create New Group</h3>
+        <div class="form-group">
+            <label for="groupName">Group Name</label>
+            <input type="text" id="groupName" placeholder="Enter group name">
+        </div>
+        <div class="form-group">
+            <label>Select Members</label>
+            <div id="groupMembersList" class="checkbox-list">
+                <p class="loading">Loading users...</p>
+            </div>
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-secondary" id="cancelGroupBtn">Cancel</button>
+            <button class="btn btn-primary" id="confirmGroupBtn">Create</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}
