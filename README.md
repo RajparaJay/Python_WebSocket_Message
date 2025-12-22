@@ -200,14 +200,6 @@ python_messenger/
 - has_left (Boolean)
 - left_at (DateTime, nullable)
 
-## Key Differences from C# Version
-
-1. **Framework**: ASP.NET Core → Flask
-2. **ORM**: Entity Framework Core → SQLAlchemy
-3. **WebSocket**: SignalR → Socket.IO
-4. **Authentication**: ASP.NET Identity → Flask-Login
-5. **Database**: SQL Server → SQLite (easily changeable)
-
 ## Development
 
 ### Running in Development Mode
