@@ -15,7 +15,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+ENV DATABASE_URL="mysql+pymysql://root:Jay%401524869@db/MessengerDB"
+ENV SECRET_KEY="dev-secret-key-change-in-production"
+
 EXPOSE 5000
 
-# Use gunicorn with eventlet worker for SocketIO support
-CMD ["gunicorn", "--worker-class", "eventlet", "-w", "1", "--bind", "0.0.0.0:5000", "app:app"]
+# Use gunicorn with threads since app uses async_mode='threading'
+CMD ["gunicorn", "--threads", "100", "--bind", "0.0.0.0:5000", "app:app"]

@@ -6,12 +6,13 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - DATABASE_URL=mysql+pymysql://root:Jay%401524869@localhost/MessengerDB
+      - DATABASE_URL=mysql+pymysql://root:Jay%401524869@db/MessengerDB
       - SECRET_KEY=dev-secret-key
       - FLASK_APP=app.py
       - FLASK_DEBUG=1
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: always
 
   db:
@@ -21,9 +22,24 @@ services:
       MYSQL_DATABASE: MessengerDB
       MYSQL_PASSWORD: Jay@1524869
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_port: 3306
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
     restart: always
 
 volumes:
