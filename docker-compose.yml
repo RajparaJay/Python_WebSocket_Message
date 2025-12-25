@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=mysql+pymysql://root:Jay%401524869@localhost/MessengerDB
+      - SECRET_KEY=dev-secret-key
+      - FLASK_APP=app.py
+      - FLASK_DEBUG=1
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: Jay@1524869
+      MYSQL_DATABASE: MessengerDB
+      MYSQL_PASSWORD: Jay@1524869
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  db_data:
