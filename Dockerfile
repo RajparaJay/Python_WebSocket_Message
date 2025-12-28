@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-ENV DATABASE_URL="mysql+pymysql://root:Jay%401524869@db/MessengerDB"
+ENV DATABASE_URL="mysql+pymysql://root:Test%40123456@db/MessengerDB"
 ENV SECRET_KEY="dev-secret-key-change-in-production"
 
 EXPOSE 5000

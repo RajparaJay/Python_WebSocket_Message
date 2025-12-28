@@ -9,7 +9,7 @@ def create_database():
     """Create the database if it doesn't exist."""
     # Parse database URL to extract connection details
     # Default: mysql+pymysql://root:password@localhost/MessengerDB
-    db_url = os.environ.get('DATABASE_URL', 'mysql+pymysql://root:Jay%401524869@localhost/MessengerDB')
+    db_url = os.environ.get('DATABASE_URL', 'mysql+pymysql://root:Test%40123456@localhost/MessengerDB')
     
     try:
         if 'mysql+pymysql://' in db_url:

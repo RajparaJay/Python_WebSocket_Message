@@ -14,7 +14,7 @@ class Config:
     # Database configuration
     # SQL Server connection string with Windows Authentication
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'mysql+pymysql://root:Jay%401524869@localhost/MessengerDB'
+        'mysql+pymysql://root:Test%40123456@localhost/MessengerDB'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = {
         'pool_pre_ping': True,  # Verify connections before using them
