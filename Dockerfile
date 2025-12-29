@@ -18,7 +18,7 @@ COPY . .
 ENV DATABASE_URL="mysql+pymysql://root:Test%40123456@db/MessengerDB"
 ENV SECRET_KEY="dev-secret-key-change-in-production"
 
-EXPOSE 5000
+EXPOSE 5010
 
 # Use gunicorn with threads since app uses async_mode='threading'
-CMD ["gunicorn", "--threads", "100", "--bind", "0.0.0.0:5000", "app:app"]
+CMD ["gunicorn", "--threads", "100", "--bind", "0.0.0.0:5010", "app:app"]

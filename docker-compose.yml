@@ -6,7 +6,7 @@ services:
     platform: linux/amd64
     build: .
     ports:
-      - "5000:5000"
+      - "5010:5010"
     environment:
       - DATABASE_URL=mysql+pymysql://root:Test%40123456@db/MessengerDB
       - SECRET_KEY=dev-secret-key
